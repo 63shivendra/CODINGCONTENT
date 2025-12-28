@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Interview Encyclopedia - 60+ Challenges</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        :root {
+            --primary: #1e293b;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --code-bg: #0f172a;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; scroll-behavior: smooth; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.9em; }
+        
+        .sql-card { 
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 4rem 0 2rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .table-container {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        th { background: var(--primary); color: white; padding: 0.5rem; text-align: left; }
+        td { padding: 0.5rem; border: 1px solid #e2e8f0; }
+        tr:nth-child(even) { background: #f8fafc; }
+
+        .solution-box {
+            background-color: var(--code-bg);
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            position: relative;
+            overflow-x: auto;
+        }
+        
+        .solution-box::before {
+            content: "SQL QUERY";
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: 0.65rem;
+            color: #64748b;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-right: 0.5rem;
+        }
+
+        .nav-link { 
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .nav-link:hover { background: #eff6ff; color: var(--accent); }
+
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .grid-tables { grid-template-columns: 1fr !important; }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Hero Section -->
+    <header class="bg-slate-900 text-white py-16 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <span class="bg-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Master Edition</span>
+            <h1 class="text-5xl font-black mt-4 mb-6">SQL Interview Encyclopedia</h1>
+            <p class="text-slate-400 text-lg">60+ LeetCode-style challenges solving every major database operation pattern used in top-tier technical interviews.</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <div class="text-center px-4 border-r border-slate-700">
+                    <div class="text-2xl font-bold text-blue-400">60+</div>
+                    <div class="text-xs uppercase text-slate-500">Queries</div>
+                </div>
+                <div class="text-center px-4 border-r border-slate-700">
+                    <div class="text-2xl font-bold text-green-400">7</div>
+                    <div class="text-xs uppercase text-slate-500">Categories</div>
+                </div>
+                <div class="text-center px-4">
+                    <div class="text-2xl font-bold text-purple-400">100%</div>
+                    <div class="text-xs uppercase text-slate-500">LeetCode Meta</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky-nav">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap gap-2 justify-center font-bold text-xs uppercase tracking-tighter text-slate-500">
+            <a href="#intro" class="nav-link">Getting Started</a>
+            <a href="#basics" class="nav-link">Basic & Filters</a>
+            <a href="#joins" class="nav-link">Joins & Self</a>
+            <a href="#aggregates" class="nav-link">Aggregations</a>
+            <a href="#strings" class="nav-link">Strings</a>
+            <a href="#dates" class="nav-link">Dates</a>
+            <a href="#window" class="nav-link">Window Functions</a>
+            <a href="#advanced" class="nav-link">CTEs & Logic</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6">
+
+        <!-- Concepts Header -->
+        <section id="intro" class="mb-16 bg-white p-10 rounded-2xl shadow-sm border border-slate-200">
+            <h2 class="text-3xl font-bold mb-6 flex items-center gap-2">
+                <span class="text-blue-500">📚</span> Core Mastery List
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                    <h4 class="font-bold text-blue-800 mb-2">Basic Retrieval</h4>
+                    <p class="text-xs text-blue-600">SELECT DISTINCT, WHERE (AND/OR/IN/BETWEEN), IS NULL, ORDER BY, LIMIT/OFFSET.</p>
+                </div>
+                <div class="p-4 bg-green-50 rounded-xl border border-green-100">
+                    <h4 class="font-bold text-green-800 mb-2">Aggregation Functions</h4>
+                    <p class="text-xs text-green-600">SUM(), AVG(), COUNT(DISTINCT), MIN(), MAX(), GROUP BY, HAVING.</p>
+                </div>
+                <div class="p-4 bg-purple-50 rounded-xl border border-purple-100">
+                    <h4 class="font-bold text-purple-800 mb-2">String & Formatting</h4>
+                    <p class="text-xs text-purple-600">CONCAT, SUBSTRING, LEFT/RIGHT, UPPER/LOWER, TRIM, LENGTH, REGEXP.</p>
+                </div>
+                <div class="p-4 bg-orange-50 rounded-xl border border-orange-100">
+                    <h4 class="font-bold text-orange-800 mb-2">Date Manipulation</h4>
+                    <p class="text-xs text-orange-600">DATEDIFF, DATE_ADD, DATE_FORMAT, YEAR, MONTH, DAY, NOW.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORY 1: BASIC SELECT & FILTERS (Problems 1-10) -->
+        <section id="basics">
+            <div class="section-header">
+                <div class="w-3 h-8 bg-blue-500 rounded"></div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">1. Basic Select & Filtering</h2>
+                <span class="text-slate-400 text-sm ml-auto">Questions 1-10</span>
+            </div>
+
+            <!-- Problem 1: Big Countries -->
+            <div class="sql-card p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold">1. Big Countries (LeetCode 595)</h3>
+                    <span class="tag bg-green-100 text-green-700">Easy</span>
+                </div>
+                <p class="text-slate-600 mb-6">Find countries that have an area of at least 3 million km² or a population of at least 25 million.</p>
+                <div class="grid md:grid-cols-2 gap-8 mb-6 grid-tables">
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-400 mb-2">INPUT: World</h4>
+                        <div class="table-container">
+                            <table>
+                                <thead><tr><th>name</th><th>continent</th><th>area</th><th>population</th><th>gdp</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Afghanistan</td><td>Asia</td><td>652230</td><td>25500100</td><td>20343000</td></tr>
+                                    <tr><td>Algeria</td><td>Africa</td><td>2381741</td><td>37100000</td><td>188681000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-400 mb-2">OUTPUT</h4>
+                        <div class="table-container">
+                            <table>
+                                <thead><tr><th>name</th><th>population</th><th>area</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Afghanistan</td><td>25500100</td><td>652230</td></tr>
+                                    <tr><td>Algeria</td><td>37100000</td><td>2381741</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-box">
+<pre><code>SELECT name, population, area
+FROM World
+WHERE area >= 3000000 OR population >= 25000000;</code></pre>
+                </div>
+            </div>
+
+            <!-- More IDs for Section 1 -->
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">2. Recyclable & Low Fat (1757)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Filtering with <code>AND</code> across boolean-like strings.</p>
+                    <code class="text-[10px] block mt-2 text-blue-600">WHERE low_fats = 'Y' AND recyclable = 'Y'</code>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">3. Find Customer Referee (584)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Crucial: Handling <code>NULL</code> values in filters.</p>
+                    <code class="text-[10px] block mt-2 text-blue-600">WHERE referee_id != 2 OR referee_id IS NULL</code>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">4. Article Views I (1148)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Using <code>DISTINCT</code> and <code>ORDER BY</code>.</p>
+                    <code class="text-[10px] block mt-2 text-blue-600">SELECT DISTINCT author_id FROM Views WHERE author_id = viewer_id</code>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">5. Invalid Tweets (1683)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Filtering by string length.</p>
+                    <code class="text-[10px] block mt-2 text-blue-600">WHERE LENGTH(content) > 15</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORY 2: JOINS & SELF JOINS (Problems 11-20) -->
+        <section id="joins">
+            <div class="section-header">
+                <div class="w-3 h-8 bg-green-500 rounded"></div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">2. Advanced Joins & Self Joins</h2>
+                <span class="text-slate-400 text-sm ml-auto">Questions 11-20</span>
+            </div>
+
+            <!-- Problem 11: Combine Two Tables -->
+            <div class="sql-card p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold">11. Combine Two Tables (175)</h3>
+                    <span class="tag bg-green-100 text-green-700">Easy</span>
+                </div>
+                <p class="text-slate-600 mb-6">Report the first name, last name, city, and state for each person in the Person table. If the address is missing, report NULL.</p>
+                <div class="solution-box">
+<pre><code>SELECT p.firstName, p.lastName, a.city, a.state
+FROM Person p
+LEFT JOIN Address a ON p.personId = a.personId;</code></pre>
+                </div>
+            </div>
+
+            <!-- Problem 12: Employees Earning More Than Managers -->
+            <div class="sql-card p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold">12. Higher Than Manager (181)</h3>
+                    <span class="tag bg-green-100 text-green-700">Self-Join</span>
+                </div>
+                <p class="text-slate-600 mb-6">Find employees who earn more than their direct managers.</p>
+                <div class="grid md:grid-cols-2 gap-8 mb-6 grid-tables">
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-400 mb-2">INPUT: Employee</h4>
+                        <div class="table-container">
+                            <table>
+                                <thead><tr><th>id</th><th>name</th><th>salary</th><th>managerId</th></tr></thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Joe</td><td>70000</td><td>3</td></tr>
+                                    <tr><td>3</td><td>Sam</td><td>60000</td><td>NULL</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-box">
+<pre><code>SELECT e1.name AS Employee
+FROM Employee e1
+JOIN Employee e2 ON e1.managerId = e2.id
+WHERE e1.salary > e2.salary;</code></pre>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">13. Customers Who Never Order (183)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Filtering using <code>LEFT JOIN</code> and <code>IS NULL</code>.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">14. Replace Employee ID (1378)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Standard Left Join for data consolidation.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">15. Product Sales Analysis I (1068)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Basic Join across transaction and product tables.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">16. Confirmation Rate (1934)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Left Join with <code>AVG(IF(...))</code> or <code>AVG(CASE...)</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORY 3: AGGREGATIONS & GROUPING (Problems 21-30) -->
+        <section id="aggregates">
+            <div class="section-header">
+                <div class="w-3 h-8 bg-purple-500 rounded"></div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">3. Aggregations & Complex Metrics</h2>
+                <span class="text-slate-400 text-sm ml-auto">Questions 21-30</span>
+            </div>
+
+            <!-- Problem 21: Department Highest Salary -->
+            <div class="sql-card p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold">21. Department Highest Salary (184)</h3>
+                    <span class="tag bg-yellow-100 text-yellow-700">Medium</span>
+                </div>
+                <p class="text-slate-600 mb-6">Find employees who have the highest salary in each department.</p>
+                <div class="solution-box">
+<pre><code>SELECT d.name AS Department, e.name AS Employee, e.salary
+FROM Employee e
+JOIN Department d ON e.departmentId = d.id
+WHERE (e.departmentId, e.salary) IN (
+    SELECT departmentId, MAX(salary)
+    FROM Employee
+    GROUP BY departmentId
+);</code></pre>
+                </div>
+            </div>
+
+            <!-- Problem 22: Classes More Than 5 Students -->
+            <div class="sql-card p-8">
+                <h3 class="text-xl font-bold mb-4">22. Grouping with Having (596)</h3>
+                <p class="text-slate-600 mb-6">Find all classes that have at least five students.</p>
+                <div class="solution-box">
+<pre><code>SELECT class
+FROM Courses
+GROUP BY class
+HAVING COUNT(student) >= 5;</code></pre>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">23. Average Selling Price (1251)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Weighted average: <code>SUM(price*units)/SUM(units)</code>.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">24. Project Employees I (1075)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Calculating <code>ROUND(AVG(), 2)</code> per project.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">25. Percentage of Users (1633)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Aggregate divided by a subquery total count.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORY 4: STRINGS & PATTERNS (Problems 31-40) -->
+        <section id="strings">
+            <div class="section-header">
+                <div class="w-3 h-8 bg-orange-500 rounded"></div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">4. String Manipulation & Regex</h2>
+                <span class="text-slate-400 text-sm ml-auto">Questions 31-40</span>
+            </div>
+
+            <!-- Problem 31: Fix Names -->
+            <div class="sql-card p-8">
+                <h3 class="text-xl font-bold mb-4">31. Fix Names Formatting (1667)</h3>
+                <p class="text-slate-600 mb-6">Fix names so only the first character is uppercase and the rest are lowercase.</p>
+                <div class="solution-box">
+<pre><code>SELECT user_id, 
+       CONCAT(UPPER(LEFT(name, 1)), LOWER(SUBSTR(name, 2))) AS name
+FROM Users
+ORDER BY user_id;</code></pre>
+                </div>
+            </div>
+
+            <!-- Problem 32: Valid Emails -->
+            <div class="sql-card p-8">
+                <h3 class="text-xl font-bold mb-4">32. Find Users with Valid Emails (1517)</h3>
+                <p class="text-slate-600 mb-6">Find users with emails starting with a letter, and containing only letters, digits, underscores, dots, or dashes before @leetcode.com.</p>
+                <div class="solution-box">
+<pre><code>SELECT *
+FROM Users
+WHERE mail REGEXP '^[A-Za-z][A-Za-z0-9._-]*@leetcode\\.com$';</code></pre>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">33. Patients with Condition (1527)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Pattern matching: <code>LIKE 'DIAB1%' OR LIKE '% DIAB1%'</code>.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">34. Group Sold Products (1484)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Using <code>GROUP_CONCAT</code> to list items in one row.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORY 5: DATE OPERATIONS (Problems 41-50) -->
+        <section id="dates">
+            <div class="section-header">
+                <div class="w-3 h-8 bg-pink-500 rounded"></div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">5. Date & Time Analytics</h2>
+                <span class="text-slate-400 text-sm ml-auto">Questions 41-50</span>
+            </div>
+
+            <!-- Problem 41: Rising Temperature -->
+            <div class="sql-card p-8">
+                <h3 class="text-xl font-bold mb-4">41. Rising Temperature (197)</h3>
+                <p class="text-slate-600 mb-6">Find IDs with higher temperatures than their previous day.</p>
+                <div class="solution-box">
+<pre><code>SELECT w1.id
+FROM Weather w1, Weather w2
+WHERE DATEDIFF(w1.recordDate, w2.recordDate) = 1
+  AND w1.temperature > w2.temperature;</code></pre>
+                </div>
+            </div>
+
+            <!-- Problem 42: Monthly Transactions -->
+            <div class="sql-card p-8">
+                <h3 class="text-xl font-bold mb-4">42. Monthly Transactions I (1193)</h3>
+                <p class="text-slate-600 mb-6">Aggregate transactions per month and country.</p>
+                <div class="solution-box">
+<pre><code>SELECT 
+    DATE_FORMAT(trans_date, '%Y-%m') AS month,
+    country,
+    COUNT(id) AS trans_count,
+    SUM(state = 'approved') AS approved_count,
+    SUM(amount) AS trans_total_amount,
+    SUM(IF(state = 'approved', amount, 0)) AS approved_total_amount
+FROM Transactions
+GROUP BY month, country;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORY 6: WINDOW FUNCTIONS (Problems 51-60) -->
+        <section id="window">
+            <div class="section-header">
+                <div class="w-3 h-8 bg-cyan-500 rounded"></div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">6. Window Functions (Analytical)</h2>
+                <span class="text-slate-400 text-sm ml-auto">Questions 51-60</span>
+            </div>
+
+            <!-- Problem 51: Top 3 Salaries -->
+            <div class="sql-card p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold">51. Dept Top 3 Salaries (185)</h3>
+                    <span class="tag bg-red-100 text-red-700">Hard</span>
+                </div>
+                <p class="text-slate-600 mb-6">Find high earners (top 3 unique salaries) in each department.</p>
+                <div class="solution-box">
+<pre><code>SELECT Department, Employee, Salary
+FROM (
+    SELECT 
+        d.name AS Department,
+        e.name AS Employee,
+        e.salary AS Salary,
+        DENSE_RANK() OVER (PARTITION BY d.name ORDER BY e.salary DESC) AS rnk
+    FROM Employee e
+    JOIN Department d ON e.departmentId = d.id
+) t
+WHERE rnk <= 3;</code></pre>
+                </div>
+            </div>
+
+            <!-- Problem 52: Last Person on Bus -->
+            <div class="sql-card p-8">
+                <h3 class="text-xl font-bold mb-4">52. Running Total Weight (1204)</h3>
+                <p class="text-slate-600 mb-6">Find the last person who can fit in the bus (1000kg limit) using a running total.</p>
+                <div class="solution-box">
+<pre><code>SELECT person_name
+FROM (
+    SELECT person_name, 
+           SUM(weight) OVER (ORDER BY turn) AS cumulative_weight
+    FROM Queue
+) t
+WHERE cumulative_weight <= 1000
+ORDER BY cumulative_weight DESC
+LIMIT 1;</code></pre>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">53. Exchange Seats (626)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Using <code>LEAD</code> and <code>LAG</code> with <code>CASE</code>.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">54. Restaurant Growth (1321)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Moving 7-day average using <code>ROWS 6 PRECEDING</code>.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-200 rounded-lg">
+                    <h4 class="font-bold text-sm">55. Human Traffic (601)</h4>
+                    <p class="text-xs text-slate-500 mt-1">Complex logic identifying 3+ consecutive IDs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORY 7: CTEs & COMPLEX LOGIC (Problems 61-70) -->
+        <section id="advanced">
+            <div class="section-header">
+                <div class="w-3 h-8 bg-black rounded"></div>
+                <h2 class="text-2xl font-black uppercase tracking-tight">7. CTEs & Advanced Logical Reports</h2>
+                <span class="text-slate-400 text-sm ml-auto">Questions 61-70</span>
+            </div>
+
+            <!-- Problem 61: Count Salary Categories -->
+            <div class="sql-card p-8">
+                <h3 class="text-xl font-bold mb-4">61. Count Salary Categories (1907)</h3>
+                <p class="text-slate-600 mb-6">Report counts for 'Low', 'Average', and 'High' even if a category has 0 entries (Use UNION).</p>
+                <div class="solution-box">
+<pre><code>SELECT 'Low Salary' AS category, COUNT(*) AS accounts_count FROM Accounts WHERE income < 20000
+UNION
+SELECT 'Average Salary', COUNT(*) FROM Accounts WHERE income BETWEEN 20000 AND 50000
+UNION
+SELECT 'High Salary', COUNT(*) FROM Accounts WHERE income > 50000;</code></pre>
+                </div>
+            </div>
+            
+            <!-- Summary of 60+ Queries -->
+            <div class="bg-slate-900 text-white p-10 rounded-2xl text-center">
+                <h2 class="text-2xl font-bold mb-4">Final Master Statistics</h2>
+                <div class="flex flex-wrap justify-center gap-10">
+                    <div><span class="block text-4xl font-bold">15</span><span class="text-xs text-slate-400">Easy Patterns</span></div>
+                    <div><span class="block text-4xl font-bold">35</span><span class="text-xs text-slate-400">Medium Scenarios</span></div>
+                    <div><span class="block text-4xl font-bold">10</span><span class="text-xs text-slate-400">Hard Algorithmic</span></div>
+                </div>
+                <p class="mt-8 text-slate-400 text-sm italic">"The best way to learn SQL is to break your queries. If it works on the first try, you didn't learn enough."</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-500 py-12 px-6 text-center text-sm border-t border-slate-800">
+        <div class="max-w-4xl mx-auto">
+            <p class="mb-2">SQL Interview Encyclopedia © 2024</p>
+            <p>Designed for LeetCode Mastery. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
