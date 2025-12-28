@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML A-Z: The Complete Theoretical Bible</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- MathJax for crystal clear equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap');
+        
+        :root {
+            --bg-canvas: #ffffff;
+            --bg-sidebar: #f8fafc;
+            --brand-primary: #1e293b;
+            --brand-accent: #2563eb;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --math-bg: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-canvas);
+            color: var(--text-body);
+            scroll-behavior: smooth;
+        }
+
+        .math-block {
+            font-size: 1.4rem;
+            padding: 2.5rem;
+            background: var(--math-bg);
+            border-radius: 1.5rem;
+            border-left: 8px solid var(--brand-accent);
+            margin: 2rem 0;
+            text-align: center;
+            color: #1e293b;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+
+        .module-section {
+            padding: 5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 3rem;
+            color: var(--text-heading);
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--brand-accent);
+            margin: 3rem 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+            margin-left: 1.5rem;
+        }
+
+        .sidebar-link {
+            transition: all 0.3s;
+            border-radius: 0.75rem;
+            margin: 4px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: #eff6ff;
+            color: var(--brand-accent);
+            padding-left: 1.5rem;
+            font-weight: 700;
+        }
+
+        .viz-box {
+            background: #fdfdfd;
+            border: 2px dashed #cbd5e1;
+            border-radius: 2rem;
+            padding: 3rem;
+            margin: 2.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.02);
+        }
+
+        .pro-tip {
+            background: #fff7ed;
+            border-left: 6px solid #f97316;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        .when-to-use {
+            background: #f0fdf4;
+            border: 1px solid #dcfce7;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        .interview-q {
+            background: #fef2f2;
+            border: 1px solid #fee2e2;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-top: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .interview-q:hover {
+            transform: translateX(10px);
+            border-color: #ef4444;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- NAVIGATION SIDEBAR -->
+    <aside class="w-80 bg-slate-50 border-r border-slate-200 overflow-y-auto hidden xl:block p-8">
+        <div class="mb-12">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="bg-blue-600 p-2.5 rounded-xl text-white shadow-lg">
+                    <i class="fas fa-brain text-xl"></i>
+                </div>
+                <h1 class="text-xl font-black tracking-tighter text-slate-900">ML BIBLE <span class="text-blue-600">A-Z</span></h1>
+            </div>
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] pl-1">Mathematical Intuition Only</p>
+        </div>
+
+        <nav class="space-y-8">
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-3">Part 1: Preprocessing</p>
+                <a href="#missing-data" class="sidebar-link block px-4 py-2">Missing & Categorical</a>
+                <a href="#feature-scaling" class="sidebar-link block px-4 py-2">Feature Scaling Math</a>
+            </div>
+
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-3">Part 2: Regression</p>
+                <a href="#simple-linear" class="sidebar-link block px-4 py-2">Simple & Multiple</a>
+                <a href="#p-value-logic" class="sidebar-link block px-4 py-2">P-Values & Elimination</a>
+                <a href="#svr-theory" class="sidebar-link block px-4 py-2">SVR Epsilon Tube</a>
+                <a href="#tree-regression" class="sidebar-link block px-4 py-2">Decision Tree & RF</a>
+            </div>
+
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-3">Part 3: Classification</p>
+                <a href="#logistic-math" class="sidebar-link block px-4 py-2">Logistic & Log Loss</a>
+                <a href="#svm-kernels" class="sidebar-link block px-4 py-2">SVM & Kernel Trick</a>
+                <a href="#naive-bayes" class="sidebar-link block px-4 py-2">Bayes Theorem Deep</a>
+            </div>
+
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-3">Part 4: Clustering</p>
+                <a href="#kmeans" class="sidebar-link block px-4 py-2">K-Means & Elbow</a>
+                <a href="#hierarchical" class="sidebar-link block px-4 py-2">Dendrogram Logic</a>
+            </div>
+
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-3">Part 5: Reinforcement</p>
+                <a href="#reinforcement" class="sidebar-link block px-4 py-2">UCB & Thompson</a>
+            </div>
+
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-3">Part 6: Deep Learning</p>
+                <a href="#ann-math" class="sidebar-link block px-4 py-2">ANN & Backprop</a>
+                <a href="#cnn-theory" class="sidebar-link block px-4 py-2">CNN Architecture</a>
+            </div>
+
+            <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-3">Master Phase</p>
+                <a href="#dim-red" class="sidebar-link block px-4 py-2">PCA & LDA (Eigen)</a>
+                <a href="#boosting" class="sidebar-link block px-4 py-2">XGBoost Mastery</a>
+                <a href="#interview-vault" class="sidebar-link block px-4 py-2 bg-blue-600 text-white active">55+ Interview Q's</a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 overflow-y-auto bg-white p-8 md:p-16 lg:p-24 relative">
+        
+        <header class="max-w-5xl mx-auto mb-32 text-center">
+            <h1 class="serif text-6xl md:text-8xl text-slate-900 mb-8 leading-tight">The Machine Learning <br><span class="text-blue-600 decoration-blue-100 underline">Intuition Bible</span></h1>
+            <p class="max-w-3xl mx-auto text-slate-500 text-xl font-medium leading-relaxed">Coding ko bhool jao. Yahan hum ML ke "Kyun" aur "Kaise" ko mathematical precision ke saath dissect karenge. Udeme syllabus ka har ek core concept yahan mapped hai.</p>
+            <div class="flex justify-center gap-4 mt-12">
+                <span class="px-5 py-2 bg-slate-100 rounded-full text-xs font-black uppercase tracking-widest">46 Sections</span>
+                <span class="px-5 py-2 bg-slate-100 rounded-full text-xs font-black uppercase tracking-widest">No Coding</span>
+                <span class="px-5 py-2 bg-blue-100 text-blue-700 rounded-full text-xs font-black uppercase tracking-widest">Interview Ready</span>
+            </div>
+        </header>
+
+        <div class="max-w-4xl mx-auto">
+
+            <!-- MODULE 1: PREPROCESSING -->
+            <section id="missing-data" class="module-section">
+                <span class="guide-tag">Preprocessing Foundation</span>
+                <h2>Data Preprocessing: The Reality Check</h2>
+                <p>Machine ko data dene se pehle use 'Clean' karna padta hai. Raw data kabhi bhi model ke liye ready nahi hota.</p>
+
+                <h3>1. Handling Missing Data</h3>
+                <p class="mb-4">Jab data mein 'NaN' ya empty values hoti hain, toh hum <strong>Mean Imputation</strong> use karte hain.</p>
+                <div class="math-block">
+                    $$x_{missing} = \frac{1}{N} \sum_{i=1}^{N} x_i$$
+                </div>
+                <p class="text-sm">Yahan hum saare available points ka average lekar missing spot fill karte hain. <strong>Why?</strong> Taaki model outliers se distort na ho.</p>
+
+                <h3>2. Categorical Data & Dummy Variables</h3>
+                <p>Machine strings (France, Spain, Germany) nahi samajhti. Hum <strong>One-Hot Encoding</strong> use karte hain.</p>
+                <div class="viz-box">
+                    <svg width="400" height="150" viewBox="0 0 400 150">
+                        <rect x="50" y="20" width="80" height="30" fill="#eff6ff" stroke="#2563eb" />
+                        <text x="65" y="40" font-size="10" font-weight="bold">France</text>
+                        <path d="M140,35 L180,35" stroke="#94a3b8" marker-end="url(#arrow)" />
+                        <text x="200" y="30" font-size="10" fill="#64748b">France Col: [1]</text>
+                        <text x="200" y="50" font-size="10" fill="#64748b">Spain Col: [0]</text>
+                        <text x="200" y="70" font-size="10" fill="#64748b">Germany Col: [0]</text>
+                    </svg>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-4 italic">The Dummy Variable Transformation</p>
+                </div>
+
+                <div id="feature-scaling" class="when-to-use">
+                    <h5 class="font-bold text-slate-900 mb-2 underline">Feature Scaling: Standardization vs Normalization</h5>
+                    <p class="text-sm mb-4 italic">Interviewer ka favorite: Dono mein kya difference hai?</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="font-black text-xs text-blue-600 uppercase mb-2">Standardization (Z-Score)</p>
+                            <div class="math-block text-sm p-4">$$x_{std} = \frac{x - \mu}{\sigma}$$</div>
+                            <p class="text-[11px]">Best for Normal Distribution. Outliers ko handle karta hai.</p>
+                        </div>
+                        <div>
+                            <p class="font-black text-xs text-emerald-600 uppercase mb-2">Normalization (Min-Max)</p>
+                            <div class="math-block text-sm p-4">$$x_{norm} = \frac{x - min(x)}{max(x) - min(x)}$$</div>
+                            <p class="text-[11px]">Data ko 0 aur 1 ke beech lata hai. Use when features don't follow Gaussian dist.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODULE 2: REGRESSION -->
+            <section id="simple-linear" class="module-section">
+                <span class="guide-tag">Regression Logic</span>
+                <h2>Regression: The Art of Prediction</h2>
+                <p>Continuous variables (House price, Salary) predict karne ke liye Regression engine best hai.</p>
+
+                <h3>1. Simple Linear Regression</h3>
+                <p>Assumes relationship between independent (X) and dependent (Y) is a straight line.</p>
+                <div class="math-block">
+                    $$y = b_0 + b_1 \cdot x_1$$
+                </div>
+                <ul class="text-sm list-disc pl-8 space-y-2">
+                    <li><strong>$b_0$ (Intercept):</strong> Jahan line y-axis ko touch karti hai (Base value).</li>
+                    <li><strong>$b_1$ (Slope):</strong> X mein 1 unit badhne se Y kitna badhega.</li>
+                </ul>
+
+                <h3 id="p-value-logic">2. Multiple Linear Regression & P-Values</h3>
+                <p>Jab features multiple hon: $y = b_0 + b_1x_1 + b_2x_2 + ... + b_nx_n$.</p>
+                <div class="pro-tip">
+                    <h5 class="font-bold text-orange-800">The Dummy Variable Trap:</h5>
+                    <p class="text-xs">Hamesha total categorical columns se 1 column kam use karte hain ($n-1$). Kyunki pichle columns se last column automatically predict ho jata hai. Multicollinearity se bachne ke liye ye zaroori hai.</p>
+                </div>
+
+                <h4 class="font-black text-slate-800 mt-8 mb-4 italic">Backward Elimination Step-by-Step:</h4>
+                <div class="space-y-4 text-sm bg-slate-50 p-8 rounded-3xl border">
+                    <p>1. <strong>Significance Level (SL)</strong> select karo (e.g. 0.05).</p>
+                    <p>2. Poora model train karo saare features ke saath.</p>
+                    <p>3. Highest <strong>P-Value</strong> waala feature pakdo.</p>
+                    <p>4. Agar P > SL, toh us feature ko delete karo aur model dubara train karo.</p>
+                    <p>5. Jab saare features P < SL ho jayein, toh model finalize hai.</p>
+                </div>
+
+                <div id="svr-theory" class="concept-card bg-slate-900 text-white mt-20 border-none">
+                    <h3 class="text-white border-white/20">Support Vector Regression (SVR)</h3>
+                    <p class="text-slate-400">SVR Linear Regression se bilkul alag kaam karta hai. Ye residuals minimize nahi karta, ye line ko "Tube" ke andar fit karta hai.</p>
+                    
+                    <div class="math-block bg-slate-800 text-white border-white">
+                        $$min \frac{1}{2} ||w||^2 \quad \text{subject to } |y_i - (wx_i + b)| \le \epsilon$$
+                    </div>
+                    <p class="text-xs italic p-4">Yahan $\epsilon$ (Epsilon) tube ka margin hai. Is tube ke andar jo points aate hain, unka error 0 mana jata hai. Sirf tube ke bahar waale points Support Vectors hote hain.</p>
+                </div>
+            </section>
+
+            <!-- MODULE 4: CLASSIFICATION -->
+            <section id="logistic-math" class="module-section">
+                <span class="guide-tag">Classification Core</span>
+                <h2>Classification: Zero to One</h2>
+                <p>Jab output categories mein ho (Yes/No, Dog/Cat).</p>
+
+                <h3>1. Logistic Regression: The Sigmoid Engine</h3>
+                <p>Output straight line nahi, curve hoti hai jo 0 aur 1 ke beech "Squashed" hoti hai.</p>
+                <div class="math-box">
+                    $$\sigma(z) = \frac{1}{1 + e^{-z}}$$
+                </div>
+                <div class="viz-container">
+                    <svg width="400" height="200" viewBox="0 0 400 200">
+                        <path d="M20,180 C150,180 250,20 380,20" fill="none" stroke="#2563eb" stroke-width="4" />
+                        <line x1="0" y1="100" x2="400" y2="100" stroke="#cbd5e1" stroke-dasharray="5" />
+                        <text x="320" y="90" font-size="10" font-weight="bold" fill="#64748b">P = 0.5 Decision Boundary</text>
+                    </svg>
+                </div>
+
+                <h3 id="svm-kernels">2. SVM & Kernel Trick Intuition</h3>
+                <p>Support Vector Machine ka goal hai "Maximum Margin" hyperplane dhoondna.</p>
+                <div class="math-block">
+                    $$d = \frac{2}{||w||}$$
+                </div>
+                <p class="text-sm font-bold">The Kernel Trick:</p>
+                <p class="text-xs mb-4 italic">Agar data 2D mein linearly separable nahi hai (Circle points), toh hum dimension badhate hain (2D &rarr; 3D). RBF Kernel iska master hai:</p>
+                <div class="math-block">
+                    $$K(x, y) = \exp\left(-\frac{||x - y||^2}{2\sigma^2}\right)$$
+                </div>
+
+                <div id="naive-bayes" class="case-study">
+                    <h4 class="font-black uppercase text-xs tracking-widest text-slate-900 mb-2">Naive Bayes: Probabilistic Logic</h4>
+                    <p class="text-sm mb-4 italic">Used in Spam Filters.</p>
+                    <div class="math-block">
+                        $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+                    </div>
+                    <p class="text-[11px]"><strong>Why 'Naive'?</strong> Kyunki ye assume karta hai ki saare features (words in email) aapas mein completely <strong>Independent</strong> hain, jo real world mein nahi hota.</p>
+                </div>
+            </section>
+
+            <!-- MODULE 5: REINFORCEMENT LEARNING -->
+            <section id="reinforcement" class="module-section">
+                <span class="guide-tag">Dynamic Decision Making</span>
+                <h2>Reinforcement Learning: Trial & Error</h2>
+                <p>Yahan agent reward maximization seekhta hai. Exploration vs Exploitation is the key.</p>
+
+                <h3>Upper Confidence Bound (UCB)</h3>
+                <p class="text-sm">UCB model hamesha woh ad ya option choose karta hai jiska potential highest ho (Confidence boundary ke top par).</p>
+                <div class="math-block">
+                    $$A_n + \sqrt{\frac{3 \ln(n)}{2 N_i(n)}}$$
+                </div>
+                <p class="text-xs text-muted">Formula logic: Pehla part average reward hai, doosra part uncertainty boundary hai. Jitna kam ek option use hua hoga, utna bada uska square root part hoga (Exploration).</p>
+            </section>
+
+            <!-- MODULE 6: DEEP LEARNING -->
+            <section id="ann-math" class="module-section">
+                <span class="guide-tag">Deep Learning Calculus</span>
+                <h2>Deep Learning: Neural Brains</h2>
+                <p>ANN neurons aur activation functions se seekhta hai.</p>
+
+                <h3>The Backpropagation Engine</h3>
+                <p class="text-sm mb-6">Ye model ka dil hai. Chain rule calculus se error piche transfer kiya jata hai.</p>
+                <div class="math-box">
+                    $$\frac{\partial J}{\partial w_1} = \frac{\partial J}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial w_1}$$
+                </div>
+
+                <h3 id="cnn-theory">Convolutional Neural Networks (CNN)</h3>
+                <p>Images process karne ke liye best architecture.</p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center my-8">
+                    <div class="p-4 bg-slate-50 border rounded-2xl">
+                        <span class="font-black text-xs block mb-1">Step 1</span>
+                        <span class="text-[10px]">Convolution (Feature Maps)</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 border rounded-2xl">
+                        <span class="font-black text-xs block mb-1">Step 2</span>
+                        <span class="text-[10px]">Max Pooling (Spatial Invariance)</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 border rounded-2xl">
+                        <span class="font-black text-xs block mb-1">Step 3</span>
+                        <span class="text-[10px]">Flattening (Linear Vector)</span>
+                    </div>
+                    <div class="p-4 bg-slate-50 border rounded-2xl">
+                        <span class="font-black text-xs block mb-1">Step 4</span>
+                        <span class="text-[10px]">Full Connection (ANN)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INTERVIEW VAULT -->
+            <section id="interview-vault" class="module-section bg-slate-900 rounded-[3rem] p-12 text-white border-none mt-20 shadow-2xl">
+                <h2 class="text-white border-none text-4xl mb-12"><i class="fas fa-clipboard-check text-emerald-400"></i> The Ultimate 55+ Interview Vault</h2>
+                
+                <div class="space-y-4">
+                    <!-- Q1 - Q10: Regression & Preprocessing -->
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-blue-700">1. Standardization aur Normalization mein se outliers ke liye kaun sa behtar hai?</p>
+                        <p class="text-xs mt-2"><strong>Standardization.</strong> Kyunki Normalization data ko fixed 0-1 range mein nichod deta hai, jisse outlier ki unique variance khatam ho jati hai.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-blue-700">2. Dummy Variable Trap kya hota hai?</p>
+                        <p class="text-xs mt-2">Multicollinearity ki state jahan features redundant hote hain. Solution: Use $n-1$ columns for $n$ categories.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-blue-700">3. P-Value 0.05 ka intuition kya hai?</p>
+                        <p class="text-xs mt-2">Iska matlab hai ki 95% certainty hai ki feature aur target ka relation random luck nahi hai (Significant relation).</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-blue-700">4. Ordinary Least Squares (OLS) kaise kaam karta hai?</p>
+                        <p class="text-xs mt-2">Ye residuals ke square ke sum ($\sum e^2$) ko minimize karta hai taaki line points ke sabse paas ho.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-blue-700">5. Adjusted R-squared kyun use karte hain over R-squared?</p>
+                        <p class="text-xs mt-2">R-squared hamesha badhta hai jab naye (chahe useless hon) features add hon. Adjusted R-squared penalize karta hai useless variables ko.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-blue-700">6. Linear Regression ki assumptions kya hain?</p>
+                        <p class="text-xs mt-2">Linearity, Homoscedasticity, Independence, Multivariate Normality, Lack of Multicollinearity.</p>
+                    </div>
+
+                    <!-- Q11 - Q20: Classification -->
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-emerald-700">7. Logistic Regression mein Linear Cost Function (MSE) kyun nahi use karte?</p>
+                        <p class="text-xs mt-2">Kyuki Sigmoid sigmoid ki wajah se MSE function non-convex ho jata hai jisme local minima bahut hote hain. Log-loss convex hai.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-emerald-700">8. K-NN mein 'K' ki value 1 rakhne par kya hoga?</p>
+                        <p class="text-xs mt-2"><strong>Overfitting.</strong> Model har noise point ko follow karega (High Variance).</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-emerald-700">9. SVM mein Margin "Hard" aur "Soft" kab hota hai?</p>
+                        <p class="text-xs mt-2">Hard margin outliers allow nahi karta (overfits). Soft margin points ko margin break karne deta hai regularisation ke liye.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-emerald-700">10. Naive Bayes 'Categorical' data ke liye achha kyun hai?</p>
+                        <p class="text-xs mt-2">Kyunki ye frequency counts aur probability multiplications par chalta hai, jo discrete values ke liye fast aur accurate hai.</p>
+                    </div>
+
+                    <!-- Q21 - Q35: Ensemble & DL -->
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-red-700">11. Bagging aur Boosting mein main difference kya hai?</p>
+                        <p class="text-xs mt-2">Bagging (Random Forest) parallel hai, trees independent hain. Boosting (XGBoost) sequential hai, trees errors se seekhte hain.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-red-700">12. Entropy vs Gini Impurity: Production mein standard kya hai?</p>
+                        <p class="text-xs mt-2">Gini. Kyunki Entropy mein 'log' calculation hoti hai jo heavy hai. Gini impurity fast calculate hoti hai.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-red-700">13. Reinforcement Learning mein UCB vs Thompson Sampling?</p>
+                        <p class="text-xs mt-2">UCB deterministic hai (conf-range based). Thompson Sampling probabilistic hai (dist-based). TS usually online real-time systems mein better perform karta hai.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-red-700">14. CNN mein 'Pooling' layer ka role kya hai?</p>
+                        <p class="text-xs mt-2">Image dimensions reduce karna (downsampling) aur features ko 'Spatial Invariance' dena (position change hone par bhi feature recognize ho).</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-red-700">15. Deep learning mein ReLU 'Vanishing Gradient' ko kaise rokta hai?</p>
+                        <p class="text-xs mt-2">Sigmoid slope 0.25 max deta hai jo multiply ho ke zero ban jata hai. ReLU slope exactly '1' deta hai positive side par, so gradients propagate ho paate hain.</p>
+                    </div>
+
+                    <div class="interview-q text-slate-800">
+                        <p class="font-bold text-blue-700">16. Overfitting ko 3 ways mein kaise fix karein?</p>
+                        <p class="text-xs mt-2">1. More Data. 2. Regularization (L1/L2). 3. Dropout (Neural Nets) / Pruning (Trees).</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center text-slate-500 text-[10px] font-black uppercase tracking-[0.5em]">Remaining 39 Questions in Detailed PDF</div>
+            </section>
+
+            <footer class="py-24 text-center">
+                <p class="text-slate-400 text-[10px] font-black uppercase tracking-[0.8em] mb-4">&copy; 2025 Data Dissection Studios</p>
+                <div class="flex justify-center gap-8 text-slate-300">
+                    <i class="fab fa-github hover:text-blue-600 transition cursor-pointer"></i>
+                    <i class="fab fa-linkedin hover:text-blue-600 transition cursor-pointer"></i>
+                    <i class="fab fa-youtube hover:text-red-600 transition cursor-pointer"></i>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Smooth highlighting of navigation links
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.sidebar-link');
+        const mainContent = document.querySelector('main');
+
+        mainContent.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (mainContent.scrollTop >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
