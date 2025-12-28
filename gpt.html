@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Complete Machine Learning Notes</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+h1, h2, h3 {
+    color: #1e40af;
+}
+.section {
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.formula {
+    background: #eef2ff;
+    padding: 10px;
+    border-left: 5px solid #4f46e5;
+    margin: 10px 0;
+    font-family: monospace;
+}
+.code {
+    background: #0f172a;
+    color: #e5e7eb;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 14px;
+}
+.diagram {
+    background: #ecfeff;
+    padding: 10px;
+    border-left: 5px solid #06b6d4;
+    margin: 10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📘 Complete Machine Learning Handbook</h1>
+
+<!-- =================================== -->
+<!-- INTRO -->
+<div class="section">
+<h2>1. What is Machine Learning?</h2>
+<p>Machine Learning (ML) enables systems to learn patterns from data and make decisions without being explicitly programmed.</p>
+
+<div class="diagram">
+Data → Algorithm → Model → Prediction
+</div>
+
+<p><b>Types:</b></p>
+<ul>
+<li>Supervised Learning</li>
+<li>Unsupervised Learning</li>
+<li>Semi-Supervised Learning</li>
+<li>Reinforcement Learning</li>
+</ul>
+</div>
+
+<!-- =================================== -->
+<!-- SUPERVISED -->
+<div class="section">
+<h2>2. Supervised Learning</h2>
+
+<p>Model is trained using labeled data.</p>
+
+<ul>
+<li>Regression → Continuous Output</li>
+<li>Classification → Categorical Output</li>
+</ul>
+
+<div class="diagram">
+(X, Y) → Model → Prediction
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- LINEAR REGRESSION -->
+<div class="section">
+<h2>3. Linear Regression</h2>
+
+<div class="formula">
+y = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ
+</div>
+
+<div class="code">
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X, y)
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- LOGISTIC REGRESSION -->
+<div class="section">
+<h2>4. Logistic Regression</h2>
+
+<div class="formula">
+σ(z) = 1 / (1 + e⁻ᶻ)
+</div>
+
+<div class="code">
+from sklearn.linear_model import LogisticRegression
+clf = LogisticRegression()
+clf.fit(X, y)
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- KNN -->
+<div class="section">
+<h2>5. K-Nearest Neighbors</h2>
+
+<div class="formula">
+distance = √((x₁−y₁)² + (x₂−y₂)²)
+</div>
+
+<div class="code">
+from sklearn.neighbors import KNeighborsClassifier
+model = KNeighborsClassifier(n_neighbors=5)
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- DECISION TREE -->
+<div class="section">
+<h2>6. Decision Tree</h2>
+
+<div class="formula">
+Gini = 1 − Σ(pᵢ²)
+</div>
+
+<div class="code">
+from sklearn.tree import DecisionTreeClassifier
+model = DecisionTreeClassifier()
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- RANDOM FOREST -->
+<div class="section">
+<h2>7. Random Forest</h2>
+
+<div class="diagram">
+Many Trees → Voting → Final Output
+</div>
+
+<div class="code">
+from sklearn.ensemble import RandomForestClassifier
+model = RandomForestClassifier(n_estimators=100)
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- NAIVE BAYES -->
+<div class="section">
+<h2>8. Naive Bayes</h2>
+
+<div class="formula">
+P(A|B) = P(B|A)P(A) / P(B)
+</div>
+
+<div class="code">
+from sklearn.naive_bayes import GaussianNB
+model = GaussianNB()
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- KMEANS -->
+<div class="section">
+<h2>9. K-Means Clustering</h2>
+
+<div class="formula">
+min Σ ||xᵢ − μⱼ||²
+</div>
+
+<div class="code">
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=3)
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- PCA -->
+<div class="section">
+<h2>10. PCA</h2>
+
+<div class="formula">
+Z = XW
+</div>
+
+<div class="code">
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- NEURAL NETWORK -->
+<div class="section">
+<h2>11. Neural Networks</h2>
+
+<div class="formula">
+Output = σ(WX + b)
+</div>
+
+<div class="code">
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+model = Sequential([
+  Dense(64, activation="relu"),
+  Dense(1, activation="sigmoid")
+])
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- CNN -->
+<div class="section">
+<h2>12. Convolutional Neural Networks (CNN)</h2>
+
+<div class="diagram">
+Image → Conv → Pool → FC → Output
+</div>
+
+<div class="code">
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- RNN / LSTM -->
+<div class="section">
+<h2>13. RNN / LSTM</h2>
+
+<div class="diagram">
+x₁ → h₁ → h₂ → h₃
+</div>
+
+<div class="code">
+from tensorflow.keras.layers import LSTM
+</div>
+</div>
+
+<!-- =================================== -->
+<!-- EVALUATION -->
+<div class="section">
+<h2>14. Model Evaluation</h2>
+
+<ul>
+<li>Accuracy</li>
+<li>Precision</li>
+<li>Recall</li>
+<li>F1 Score</li>
+<li>ROC-AUC</li>
+</ul>
+</div>
+
+<!-- =================================== -->
+<!-- DEPLOYMENT -->
+<div class="section">
+<h2>15. Model Deployment</h2>
+
+<ul>
+<li>Save model (.pkl)</li>
+<li>Flask / FastAPI</li>
+<li>Docker</li>
+<li>Cloud (AWS / GCP)</li>
+</ul>
+</div>
+
+<!-- =================================== -->
+<!-- INTERVIEW -->
+<div class="section">
+<h2>16. 50+ Interview Questions</h2>
+<ul>
+<li>What is bias-variance tradeoff?</li>
+<li>Difference between supervised and unsupervised learning?</li>
+<li>Why is normalization required?</li>
+<li>What is overfitting?</li>
+<li>Explain cross-validation.</li>
+<li>What is ensemble learning?</li>
+<li>Difference between bagging and boosting?</li>
+<li>Explain ROC curve.</li>
+<li>What is PCA?</li>
+<li>Explain gradient descent.</li>
+<li>What is dropout?</li>
+<li>What is regularization?</li>
+<li>Difference between L1 and L2?</li>
+<li>Explain confusion matrix.</li>
+<li>What is AUC?</li>
+<li>What is curse of dimensionality?</li>
+<li>Explain CNN layers.</li>
+<li>What is backpropagation?</li>
+<li>Explain batch normalization.</li>
+<li>What is transfer learning?</li>
+</ul>
+</div>
+
+</body>
+</html>
