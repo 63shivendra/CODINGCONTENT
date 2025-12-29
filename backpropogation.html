@@ -1,164 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backpropagation in MLP: GO Classes (Sachin Mittal) Style</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-color: #f8fafc;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-        }
-        .math-block {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin: 1.5rem 0;
-            overflow-x: auto;
-        }
-        .highlight-yellow {
-            background-color: #fef3c7;
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
-        .step-card {
-            border-left: 4px solid #10b981;
-            transition: transform 0.2s;
-        }
-        .layer-label {
-            font-size: 12px;
-            font-weight: bold;
-            fill: #64748b;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backpropagation Diagram & Derivation</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f4f6fb;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #1c2b4a;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 24px;
+  }
+
+  .card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  .box {
+    background: #f8faff;
+    border-left: 4px solid #3b82f6;
+    padding: 12px;
+    margin: 10px 0;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    color: #1e3a8a;
+    margin-top: 20px;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .note {
+    font-size: 13px;
+    color: #555;
+    margin-top: 10px;
+  }
+</style>
 </head>
-<body class="text-slate-800">
 
-    <header class="bg-emerald-900 text-white py-12 px-6 text-center">
-        <h1 class="text-4xl font-bold mb-4">Backpropagation Derivation</h1>
-        <p class="text-xl text-emerald-100 max-w-2xl mx-auto">
-            Notation & Methodology based on GO Classes (Sachin Mittal) ML Lectures.
-        </p>
-    </header>
+<body>
 
-    <main class="max-w-4xl mx-auto py-12 px-6">
+<div class="container">
 
-        <!-- Architecture Diagram -->
-        <section class="mb-12 bg-white p-8 rounded-xl shadow-sm border border-slate-200">
-            <h2 class="text-2xl font-bold text-slate-800 mb-6">3-Layer MLP Topology</h2>
-            <div class="flex justify-center">
-                <svg viewBox="0 0 600 300" class="w-full max-w-2xl h-auto">
-                    <!-- Connections -->
-                    <g stroke="#cbd5e1" stroke-width="1.5">
-                        <line x1="100" y1="100" x2="300" y2="100" /><line x1="100" y1="100" x2="300" y2="200" />
-                        <line x1="100" y1="200" x2="300" y2="100" /><line x1="100" y1="200" x2="300" y2="200" />
-                        <line x1="300" y1="100" x2="500" y2="150" /><line x1="300" y1="200" x2="500" y2="150" />
-                    </g>
-                    <!-- Nodes -->
-                    <circle cx="100" cy="100" r="20" fill="#3b82f6" /><text x="100" y="105" text-anchor="middle" fill="white" font-size="12">x₁</text>
-                    <circle cx="100" cy="200" r="20" fill="#3b82f6" /><text x="100" y="205" text-anchor="middle" fill="white" font-size="12">x₂</text>
-                    
-                    <circle cx="300" cy="100" r="20" fill="#10b981" /><text x="300" y="105" text-anchor="middle" fill="white" font-size="12">h₁</text>
-                    <circle cx="300" cy="200" r="20" fill="#10b981" /><text x="300" y="205" text-anchor="middle" fill="white" font-size="12">h₂</text>
-                    
-                    <circle cx="500" cy="150" r="20" fill="#ef4444" /><text x="500" y="155" text-anchor="middle" fill="white" font-size="12">o₁</text>
-                    
-                    <text x="100" y="260" text-anchor="middle" class="layer-label">INPUT (L₀)</text>
-                    <text x="300" y="260" text-anchor="middle" class="layer-label">HIDDEN (L₁)</text>
-                    <text x="500" y="260" text-anchor="middle" class="layer-label">OUTPUT (L₂)</text>
-                </svg>
-            </div>
-        </section>
+<h1>Backpropagation Neural Network – Complete Diagram & Derivation</h1>
 
-        <!-- GO Classes Reference Notation -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold border-b-2 border-slate-200 pb-2 mb-6">1. Notation Reference</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white p-5 rounded border shadow-sm">
-                    <h3 class="font-bold text-emerald-700 mb-2">Variables</h3>
-                    <ul class="text-sm space-y-2">
-                        <li>\( net_{j} \): Pre-activation sum (\(\sum w_i x_i + b\))</li>
-                        <li>\( out_{j} \): Post-activation output (\(\sigma(net_j)\))</li>
-                        <li>\( E_{total} \): Total Error / Loss function</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-5 rounded border shadow-sm">
-                    <h3 class="font-bold text-emerald-700 mb-2">Gradients</h3>
-                    <ul class="text-sm space-y-2">
-                        <li>\( \delta_j \): Error signal (\(\frac{\partial E}{\partial net_j}\))</li>
-                        <li>\( \eta \): Learning rate</li>
-                        <li>\( \Delta w \): Change in weight (\(-\eta \frac{\partial E}{\partial w}\))</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+<div class="grid">
 
-        <!-- Forward Pass Calculation -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold border-b-2 border-slate-200 pb-2 mb-6">2. Forward Pass (Phase 1)</h2>
-            <p class="mb-4">Calculate activations for hidden neuron \( h_1 \):</p>
-            <div class="math-block">
-                $$net_{h1} = w_{h1x1}x_1 + w_{h1x2}x_2 + b_{h1}$$
-                $$out_{h1} = \frac{1}{1 + e^{-net_{h1}}}$$
-            </div>
-            <p class="mt-4">Total Error for the network:</p>
-            <div class="math-block">
-                $$E_{total} = \sum \frac{1}{2}(target - out_{o})^2$$
-            </div>
-        </section>
+<!-- ================= LEFT: DIAGRAM ================= -->
+<div class="card">
 
-        <!-- The Chain Rule Derivation -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold border-b-2 border-slate-200 pb-2 mb-6">3. Backprop Derivation (Phase 2)</h2>
-            
-            <div class="step-card bg-white p-6 rounded shadow-sm mb-8">
-                <h3 class="font-bold text-emerald-600 mb-4">Case 1: Weights between Hidden & Output (\( w_{oh} \))</h3>
-                <p class="text-sm mb-4">We want to find how much \( w_{o1h1} \) affects \( E_{total} \):</p>
-                <div class="math-block">
-                    $$\frac{\partial E_{total}}{\partial w_{o1h1}} = \underbrace{\frac{\partial E_{total}}{\partial out_{o1}}}_{\text{1}} \times \underbrace{\frac{\partial out_{o1}}{\partial net_{o1}}}_{\text{2}} \times \underbrace{\frac{\partial net_{o1}}{\partial w_{o1h1}}}_{\text{3}}$$
-                </div>
-                <ul class="list-decimal list-inside text-sm space-y-2 bg-slate-50 p-4 rounded">
-                    <li>\(\frac{\partial E}{\partial out_o} = -(target - out_o)\)</li>
-                    <li>\(\frac{\partial out}{\partial net} = out_o(1 - out_o)\) <span class="text-slate-400 italic">(for Sigmoid)</span></li>
-                    <li>\(\frac{\partial net}{\partial w} = out_{h1}\)</li>
-                </ul>
-            </div>
+<svg viewBox="0 0 420 320">
 
-            <div class="step-card bg-white p-6 rounded shadow-sm">
-                <h3 class="font-bold text-emerald-600 mb-4">Case 2: Weights between Input & Hidden (\( w_{hx} \))</h3>
-                <p class="text-sm mb-4">This is the "Hidden Layer" update. We must sum contributions from all output errors:</p>
-                <div class="math-block">
-                    $$\frac{\partial E_{total}}{\partial w_{h1x1}} = \left( \sum \frac{\partial E_{total}}{\partial net_{out}} \cdot \frac{\partial net_{out}}{\partial out_{h1}} \right) \cdot \frac{\partial out_{h1}}{\partial net_{h1}} \cdot \frac{\partial net_{h1}}{\partial w_{h1x1}}$$
-                </div>
-            </div>
-        </section>
+  <!-- Inputs -->
+  <rect x="30" y="70" width="80" height="40" rx="8" fill="#fff" stroke="#aaa"/>
+  <text x="55" y="95">x₁</text>
 
-        <!-- Final Parameter Update -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-semibold border-b-2 border-slate-200 pb-2 mb-6">4. The Update Rule</h2>
-            <p class="mb-4">Once gradients are calculated, we shift the weight in the direction of steepest descent:</p>
-            <div class="math-block text-xl">
-                $$w_{new} = w_{old} - \eta \cdot \frac{\partial E_{total}}{\partial w}$$
-            </div>
-        </section>
+  <rect x="30" y="160" width="80" height="40" rx="8" fill="#fff" stroke="#aaa"/>
+  <text x="55" y="185">x₂</text>
 
-        <section class="bg-emerald-50 p-6 rounded-lg border border-emerald-100">
-            <h4 class="font-bold text-emerald-800 mb-2">Key Intuition from Sachin Mittal's Lectures:</h4>
-            <p class="text-sm text-emerald-900">
-                Always focus on the <strong>Local Gradient (\(\delta\))</strong>. The derivative of a node is always its incoming activation multiplied by the error signal traveling back from the next layer. This "caching" of \(\delta\) values is what makes backpropagation efficient.
-            </p>
-        </section>
+  <!-- Hidden Layer -->
+  <circle cx="200" cy="90" r="28" fill="#fff" stroke="#5b9dff" stroke-width="2"/>
+  <text x="190" y="95">H₃</text>
 
-    </main>
+  <circle cx="200" cy="190" r="28" fill="#fff" stroke="#5b9dff" stroke-width="2"/>
+  <text x="190" y="195">H₄</text>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
-        GO Classes Reference Material &copy; 2025
-    </footer>
+  <!-- Output -->
+  <circle cx="340" cy="140" r="32" fill="#fff" stroke="#ff9a8b" stroke-width="2"/>
+  <text x="330" y="145">O₅</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8" fill="#555"/>
+    </marker>
+  </defs>
+
+  <line x1="110" y1="90" x2="170" y2="90" stroke="#555" marker-end="url(#arrow)" />
+  <line x1="110" y1="190" x2="170" y2="190" stroke="#555" marker-end="url(#arrow)" />
+  <line x1="110" y1="90" x2="170" y2="190" stroke="#555" marker-end="url(#arrow)" />
+  <line x1="110" y1="190" x2="170" y2="90" stroke="#555" marker-end="url(#arrow)" />
+
+  <line x1="228" y1="90" x2="300" y2="140" stroke="#555" marker-end="url(#arrow)" />
+  <line x1="228" y1="190" x2="300" y2="140" stroke="#555" marker-end="url(#arrow)" />
+
+  <!-- Labels -->
+  <text x="130" y="85">w₁₃</text>
+  <text x="130" y="120">w₁₄</text>
+  <text x="130" y="165">w₂₃</text>
+  <text x="130" y="205">w₂₄</text>
+
+  <text x="255" y="110">w₃₅</text>
+  <text x="255" y="165">w₄₅</text>
+</svg>
+
+</div>
+
+<!-- ================= RIGHT SIDE: MATH ================= -->
+
+<div class="card">
+
+<h3>Forward Propagation</h3>
+<div class="box">
+net₃ = x₁w₁₃ + x₂w₂₃  
+net₄ = x₁w₁₄ + x₂w₂₄  
+
+y₃ = σ(net₃)  
+y₄ = σ(net₄)  
+
+net₅ = y₃w₃₅ + y₄w₄₅  
+y₅ = σ(net₅)
+</div>
+
+<h3>Loss Function</h3>
+<div class="box">
+E = ½ (t − y₅)²
+</div>
+
+<h3>Backpropagation</h3>
+<div class="box">
+δ₅ = (y₅ − t) · y₅(1 − y₅)  
+δ₃ = δ₅ · w₃₅ · y₃(1 − y₃)  
+δ₄ = δ₅ · w₄₅ · y₄(1 − y₄)
+</div>
+
+<h3>Weight Updates</h3>
+<div class="box">
+w₃₅ ← w₃₅ − η·δ₅·y₃  
+w₄₅ ← w₄₅ − η·δ₅·y₄  
+
+w₁₃ ← w₁₃ − η·δ₃·x₁  
+w₂₃ ← w₂₃ − η·δ₃·x₂  
+
+w₁₄ ← w₁₄ − η·δ₄·x₁  
+w₂₄ ← w₂₄ − η·δ₄·x₂  
+</div>
+
+</div>
+</div>
 
 </body>
 </html>
