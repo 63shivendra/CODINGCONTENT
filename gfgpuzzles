@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100+ GeeksforGeeks Puzzles Challenge</title>
+    <meta name="description" content="A collection of 100+ popular GeeksforGeeks puzzles for interview preparation.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .puzzle-card {
+            transition: transform 0.2s, background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .puzzle-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .category-header {
+            background-image: linear-gradient(to right, #2f9e44, #40c057);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom Checkbox */
+        .check-circle {
+            min-width: 24px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+        .solved .check-circle {
+            background-color: #2f9e44;
+            border-color: #2f9e44;
+            color: white;
+        }
+        .solved {
+            background-color: #f0fdf4; /* green-50 */
+            border-color: #86efac; /* green-300 */
+        }
+        .solved p, .solved h3 {
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-green-700 tracking-tight">GFG Puzzle Collection</h1>
+            <div class="flex items-center space-x-4">
+                <div class="text-sm text-gray-500 font-medium hidden sm:block">108 Puzzles</div>
+                <div id="progress-container" class="text-sm font-bold text-green-700 bg-green-100 px-3 py-1 rounded-full">
+                    <span id="completed-count">0</span>/108 Solved
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-12">
+
+        <!-- Intro -->
+        <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-green-500">
+            <h2 class="text-xl font-bold mb-2">Instructions</h2>
+            <p class="text-gray-600">
+                This document contains <strong>108</strong> logic, mathematical, and lateral thinking puzzles commonly found on GeeksforGeeks and asked in technical interviews. 
+                <strong>No solutions are provided.</strong> The detailed statement for every puzzle is listed below. Click any card to mark it as "solved".
+            </p>
+        </div>
+
+        <!-- Section 1: The Classics (Most Famous) -->
+        <section>
+            <h2 class="text-3xl font-bold mb-6 category-header">1. The Classics & Legends</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <!-- Puzzles 1-10 -->
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#1</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">3 Ants and Triangle</h3>
+                    <p class="text-sm text-gray-600 mt-2">Three ants sit on the three corners of an equilateral triangle. Each ant randomly picks a direction and starts moving along the edge. What is the probability that none of the ants collide?</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#2</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">Heaven and Hell (Two Gates)</h3>
+                    <p class="text-sm text-gray-600 mt-2">Two gates: one to hell, one to heaven. Two gatekeepers: one always lies, one always tells the truth. You can ask only one question to one gatekeeper to find the way to heaven. What is the question?</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#3</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">10 Coins Puzzle (Blindfolded)</h3>
+                    <p class="text-sm text-gray-600 mt-2">You are blindfolded and have 10 coins on a table. You are told 5 are heads up and 5 are tails up. You cannot feel the difference. How do you separate them into two piles with the same number of heads up?</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#4</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">Mislabeled Jars</h3>
+                    <p class="text-sm text-gray-600 mt-2">Three jars: one with Apples, one with Oranges, one with Mixed. All are mislabeled. You can pick one fruit from one jar. How do you label all jars correctly?</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#5</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">100 Doors</h3>
+                    <p class="text-sm text-gray-600 mt-2">100 doors are closed. Walk 1: Toggle all. Walk 2: Toggle every 2nd. Walk 3: Toggle every 3rd... Walk 100: Toggle 100th. Which doors remain open?</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#6</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">The 25 Horses</h3>
+                    <p class="text-sm text-gray-600 mt-2">Find the fastest 3 horses among 25. You can race 5 at a time. No stopwatch. What is the minimum number of races needed?</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#7</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">Burning Ropes</h3>
+                    <p class="text-sm text-gray-600 mt-2">Two ropes each burn in exactly 60 minutes but non-uniformly (one half might burn in 10 min, the rest in 50). How do you measure 45 minutes using these two ropes?</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#8</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">Bridge Crossing (Torch Problem)</h3>
+                    <p class="text-sm text-gray-600 mt-2">4 people need to cross a bridge at night with 1 torch. Times: 1, 2, 5, 8 mins. Bridge holds 2 people. Move at slower person's pace. Find the minimum time to cross.</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#9</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">Gold Rod (7 Days Pay)</h3>
+                    <p class="text-sm text-gray-600 mt-2">Pay an employee for 7 days using a gold rod of 7 units. You can make only 2 cuts on the rod. How do you pay exactly 1 unit daily?</p>
+                </div>
+
+                <div class="puzzle-card bg-white p-5 rounded-lg shadow-sm border border-gray-100 cursor-pointer relative group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-green-600 uppercase tracking-wider">#10</span>
+                        <div class="check-circle"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                    </div>
+                    <h3 class="text-lg font-bold mt-1">3 Bulbs and 3 Switches</h3>
+                    <p class="text-sm text-gray-600 mt-2">Three switches downstairs, three bulbs upstairs. You can flip switches as much as you want but can only go upstairs once. Which switch controls which bulb?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Logic & Strategy -->
+        <section>
+            <h2 class="text-3xl font-bold mb-6 category-header">2. Logic & Strategy</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#11</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Camel and Banana Puzzle</div>
+                    <div class="text-xs text-gray-500 mt-1">A person has 3000 bananas and a camel. The camel can carry at most 1000 bananas at a time, but eats 1 banana for every kilometer it travels. The destination is 1000 km away. What is the maximum number of bananas that can be transported to the destination?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#12</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">100 Prisoners with Red/Black Hats</div>
+                    <div class="text-xs text-gray-500 mt-1">100 prisoners are lined up in a queue. Each is given a red or black hat. They can see hats in front but not their own. Starting from the back, each must guess their own color. If correct, they live; else they die. What strategy maximizes survival?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#13</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">5 Pirates and 100 Gold Coins</div>
+                    <div class="text-xs text-gray-500 mt-1">5 pirates (ranked 1 to 5) must divide 100 coins. The senior pirate proposes a split. If at least 50% vote yes, it passes. If not, he is killed and the next senior proposes. Pirates are rational and want to live. What is the optimal split for Pirate #1?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#14</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Poison and Rat</div>
+                    <div class="text-xs text-gray-500 mt-1">You have 1000 wine bottles, one of which is poisoned. You have 10 rats to test the wine. A rat dies 24 hours after drinking poisoned wine. You have only 24 hours to find the poisoned bottle. How do you do it?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#15</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">2 Eggs and 100 Floors</div>
+                    <div class="text-xs text-gray-500 mt-1">You have 2 eggs and a 100-story building. You need to determine the highest floor from which an egg can be dropped without breaking. You want to minimize the worst-case number of drops required. What is the strategy?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#16</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">The Monty Hall Problem</div>
+                    <div class="text-xs text-gray-500 mt-1">There are 3 doors. Behind one is a car, behind the others are goats. You pick a door. The host, who knows what's behind the doors, opens one of the other doors to reveal a goat. He asks if you want to switch doors. Should you switch or stay?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#17</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Farmer, Goat, Wolf, and Cabbage</div>
+                    <div class="text-xs text-gray-500 mt-1">A farmer needs to cross a river with a wolf, a goat, and a cabbage. The boat holds only the farmer and one item. If left alone, the wolf eats the goat, and the goat eats the cabbage. How can the farmer transport all across safely?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#18</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Cheryl's Birthday Puzzle</div>
+                    <div class="text-xs text-gray-500 mt-1">Albert knows the month, Bernard knows the day of Cheryl's birthday. They are given a list of 10 dates. Through a conversation of logic ("I don't know, but I know you don't know"), they figure it out. What is the date?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#19</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">The Cheating Husbands</div>
+                    <div class="text-xs text-gray-500 mt-1">In a village, every wife knows if other husbands are cheating, but not her own. The rule is: if a wife proves her husband cheats, she must kill him that night. A matriarch announces "At least one husband is cheating." What happens over the next few days?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#20</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">The Lion and the Unicorn</div>
+                    <div class="text-xs text-gray-500 mt-1">The Lion lies on Mon/Tue/Wed. The Unicorn lies on Thu/Fri/Sat. On Sunday both tell the truth. One day both say: "Yesterday was one of my lying days." What day of the week is it?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#21</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">100 People in a Circle (Josephus)</div>
+                    <div class="text-xs text-gray-500 mt-1">100 people stand in a circle with a gun. Person 1 kills Person 2 and passes the gun to Person 3. Person 3 kills Person 4 and passes to 5. This continues until one remains. Who survives?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#22</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Bag of Forgery Coins</div>
+                    <div class="text-xs text-gray-500 mt-1">You have 10 bags of coins. In 9 bags, coins weigh 10g. In one bag, they weigh 9g. You have a digital scale that gives a single reading. How do you find the fake bag in one weighing?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#23</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Blind Man and Pills</div>
+                    <div class="text-xs text-gray-500 mt-1">A blind man has 4 pills: 2 Red and 2 Blue. They feel identical. He must take exactly 1 Red and 1 Blue to survive. How can he ensure he takes the correct dosage without wasting any?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#24</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Alien Dictionary</div>
+                    <div class="text-xs text-gray-500 mt-1">You are given a list of words from an alien language sorted lexicographically. You need to derive the order of characters in this alien language from the given list.</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#25</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Strategy for a 2-Player Coin Game</div>
+                    <div class="text-xs text-gray-500 mt-1">A row of even number of coins is on the table. Two players take turns picking a coin from either end. The goal is to collect the maximum value. Prove that the first player can always win or tie, and describe the strategy.</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#26</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Prisoner and Policeman</div>
+                    <div class="text-xs text-gray-500 mt-1">A prisoner is in a circular lake. A policeman is on the shore. The policeman runs 4x faster than the prisoner swims. The prisoner escapes if he reaches the shore without the policeman catching him. Can he escape?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#27</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Chameleons Go on a Date</div>
+                    <div class="text-xs text-gray-500 mt-1">You have 13 red, 15 green, and 17 blue chameleons. When two of different colors meet, they both change to the third color. Is it possible for all chameleons to eventually become the same color?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#28</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Red Hat vs Blue Hat (Vision Logic)</div>
+                    <div class="text-xs text-gray-500 mt-1">Three logicians are blindfolded and given hats (red or blue). They remove blindfolds. A says "I don't know my color". B says "I don't know mine". C says "I know mine!". What color is C's hat and why?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#29</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">The Crazy Passenger</div>
+                    <div class="text-xs text-gray-500 mt-1">100 passengers board a plane with 100 seats. The first passenger loses his ticket and picks a random seat. Everyone else sits in their assigned seat if available, or picks a random seat if occupied. What is the probability the 100th person sits in their assigned seat?</div>
+                </div>
+                 <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><div class="font-bold text-green-700 text-sm mb-1">#30</div><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold">Russian Roulette Strategy</div>
+                    <div class="text-xs text-gray-500 mt-1">A gun has 6 chambers and 2 bullets placed in adjacent chambers. The villain spins, pulls the trigger, and it clicks (empty). He hands you the gun. Do you spin the barrel again before shooting, or just pull the trigger?</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Mathematical & Probability -->
+        <section>
+            <h2 class="text-3xl font-bold mb-6 category-header">3. Mathematical & Probability</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#31</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">50 Red Marbles and 50 Blue Marbles</div>
+                    <p class="text-xs text-gray-500">You have 50 red marbles, 50 blue marbles, and 2 jars. You can distribute the marbles however you like, but every marble must be in a jar. A blindfolded person will pick a jar at random, then a marble. How do you maximize the probability of picking a red marble?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#32</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Find Ages of Daughters</div>
+                    <p class="text-xs text-gray-500">A woman says: "I have 3 daughters. The product of their ages is 72. The sum of their ages is my house number." The man replies "I still don't know." Woman: "My eldest loves chocolate." What are the ages?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#33</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Calculate Total Distance Traveled by Bee</div>
+                    <p class="text-xs text-gray-500">Two trains are 100 km apart moving towards each other at 50 km/h each. A bee starts at one train flying at 80 km/h towards the other, touches it, and flies back, repeating until trains collide. What is the total distance the bee travels?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#34</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Water Jug Problem</div>
+                    <p class="text-xs text-gray-500">You have a 3-liter jug and a 5-liter jug, and an unlimited water supply. How can you measure exactly 4 liters of water?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#35</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Hourglasses Puzzle</div>
+                    <p class="text-xs text-gray-500">You have two hourglasses: one measures 4 minutes, the other measures 7 minutes. How do you measure exactly 9 minutes?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#36</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Ratio of Boys and Girls</div>
+                    <p class="text-xs text-gray-500">In a country, couples continue to have children until they have a boy. Once they have a boy, they stop. What is the expected ratio of boys to girls in the country?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#37</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Maximize Probability of White Ball</div>
+                    <p class="text-xs text-gray-500">You have two containers and 10 white balls and 10 black balls. You must put all balls into the containers (at least one in each). A blind draw picks a container then a ball. How do you arrange them to maximize picking a white ball?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#38</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Birthday Paradox</div>
+                    <p class="text-xs text-gray-500">How many people need to be in a room so that the probability of at least two people sharing the same birthday is greater than 50%?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#39</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">10 Identical Bottles of Pills</div>
+                    <p class="text-xs text-gray-500">You have 10 bottles of pills. 9 bottles contain 1.0g pills, 1 bottle contains 1.1g pills. You have a digital scale that gives one exact measurement. How do you identify the heavy bottle in one weighing?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#40</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The 8 Ball Problem</div>
+                    <p class="text-xs text-gray-500">You have 8 balls, one is slightly heavier than the rest. You have a balance scale. What is the minimum number of weighings required to find the heavy ball?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#41</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Grid Unique Paths</div>
+                    <p class="text-xs text-gray-500">A robot is located at the top-left corner of a m x n grid. It can only move either down or right at any point. How many possible unique paths are there to reach the bottom-right corner?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#42</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Minimum Apples for M Red Apples</div>
+                    <p class="text-xs text-gray-500">You have N boxes, each containing apples. You want to select boxes such that you have at least M red apples. What is the algorithm to minimize the number of apples picked?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#43</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Average Salary without Disclosing</div>
+                    <p class="text-xs text-gray-500">Three people want to know their average salary without telling anyone their actual salary. How can they compute it?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#44</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Missing Row in Excel</div>
+                    <p class="text-xs text-gray-500">You are given an Excel sheet with rows numbered 1 to N. One row is deleted. How do you find the missing row number in O(N) time?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#45</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Number of Calves and Chickens</div>
+                    <p class="text-xs text-gray-500">A farmer has some calves and chickens. He counts 30 heads and 100 legs. How many calves and chickens does he have?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#46</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The 12 Coins Problem</div>
+                    <p class="text-xs text-gray-500">You are given 12 coins. One is counterfeit (heavier or lighter). You have a balance scale and can use it only 3 times. Find the fake coin and determine if it is heavier or lighter.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#47</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Rs 500 Note Puzzle</div>
+                    <p class="text-xs text-gray-500">A customer buys goods worth Rs 200 with a Rs 1000 note. The shopkeeper gets change from next door. Later the neighbor finds the note fake and claims Rs 1000 back. What is the shopkeeper's total loss?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#48</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">A Man Fell into a Well</div>
+                    <p class="text-xs text-gray-500">A well is 30 meters deep. A man climbs 5 meters up during the day and slips 4 meters down at night. How many days will it take him to get out of the well?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#49</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">100 Cows and Milk</div>
+                    <p class="text-xs text-gray-500">If 5 cows eat 5 bags of grass in 5 days, how many days will it take for 10 cows to eat 10 bags of grass?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#50</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Mean of Fourth Powers</div>
+                    <p class="text-xs text-gray-500">Given a set of numbers, you need to find the mean of the fourth powers of deviations from the mean. It's a statistics-based coding puzzle often involving optimization.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#51</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Sum of Digits until Single Digit</div>
+                    <p class="text-xs text-gray-500">Given a non-negative integer num, repeatedly add all its digits until the result has only one digit. (e.g., 38 -> 11 -> 2).</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#52</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Count of 1s in Binary Representation</div>
+                    <p class="text-xs text-gray-500">Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#53</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Measuring 6L using 4L and 9L Buckets</div>
+                    <p class="text-xs text-gray-500">You have a 4L bucket and a 9L bucket. You need exactly 6L of water. How do you do it?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#54</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Two Creepers Climbing a Tree</div>
+                    <p class="text-xs text-gray-500">One creeper climbs 4 feet and slips 1 foot every day. Another climbs 3 feet and slips 0.5 feet. The tree is 20 feet high. When will they reach the top?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#55</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Distance Walked to Office</div>
+                    <p class="text-xs text-gray-500">If a person walks at 4 km/h, he reaches the office 5 min late. If he walks at 5 km/h, he reaches 10 min early. What is the distance to the office?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Lateral Thinking & Visual -->
+        <section>
+            <h2 class="text-3xl font-bold mb-6 category-header">4. Lateral Thinking & Visual</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#56</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">3 Cuts to Cut Cake into 8 Pieces</div>
+                    <p class="text-xs text-gray-500">How can you cut a round cake into exactly 8 equal pieces with only 3 straight cuts?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#57</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Manhole Covers</div>
+                    <p class="text-xs text-gray-500">Why are manhole covers typically round rather than square or rectangular?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#58</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Burning Candles</div>
+                    <p class="text-xs text-gray-500">You place a glass over a burning candle in a bowl of water. The water level rises inside the glass. Explain the physical phenomenon causing this.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#59</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Snail and Wall</div>
+                    <p class="text-xs text-gray-500">A snail is at the bottom of a 30-foot wall. It climbs up 3 feet each day and slips back 2 feet each night. How many days does it take to reach the top?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#60</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">One Mile on the Globe</div>
+                    <p class="text-xs text-gray-500">A man walks one mile south, one mile west, and then one mile north, ending up exactly where he started. Where on Earth could he be?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#61</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Matchstick Puzzle</div>
+                    <p class="text-xs text-gray-500">Move exactly 3 matchsticks to make the fish swim in the opposite direction (visual puzzle description).</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#62</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Six Matches, Right Foot Forward</div>
+                    <p class="text-xs text-gray-500">You have 6 matches arranged to form two equilateral triangles. Move 2 matches to make 4 equilateral triangles.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#63</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Last Palindrome Date</div>
+                    <p class="text-xs text-gray-500">The date 02/02/2020 is a palindrome. What was the last palindrome date before this one (in DD/MM/YYYY format)?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#64</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Chessboard and Dominos</div>
+                    <p class="text-xs text-gray-500">A chessboard has 64 squares. If you cut off two diagonally opposite corners, can you tile the remaining 62 squares with 31 dominoes (where each domino covers 2 adjacent squares)?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#65</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">10 Balls in 5 Lines</div>
+                    <p class="text-xs text-gray-500">How can you plant 10 trees (or place 10 balls) in 5 straight lines such that each line has exactly 4 trees?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#66</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Nine-Dot Continuous Path</div>
+                    <p class="text-xs text-gray-500">Connect 9 dots arranged in a 3x3 grid using 4 straight lines without lifting your pen from the paper.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#67</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Maximum Pieces from Circle</div>
+                    <p class="text-xs text-gray-500">What is the maximum number of pieces you can get by making 6 cuts across a circle (Lazy Caterer's Sequence)?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#68</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Splitting a Cake with a Missing Piece</div>
+                    <p class="text-xs text-gray-500">A rectangular cake has a rectangular piece removed from it (any size, any orientation). How do you divide the remaining cake into two equal parts with a single straight cut?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#69</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Three-Square Matchstick Challenge</div>
+                    <p class="text-xs text-gray-500">Arrange 12 matches to form 3 squares. Move 3 matches to form 2 squares.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#70</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Four Alternating Knights</div>
+                    <p class="text-xs text-gray-500">On a 3x3 board, there are 2 white knights and 2 black knights on corners. Swap their positions using standard chess knight moves.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#71</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Chain Link Puzzle</div>
+                    <p class="text-xs text-gray-500">You have 4 pieces of chain, each with 3 links. It costs 2 cents to open a link and 3 cents to close it. You want to join them into a single loop. What is the cheapest way?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#72</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Car Wheel Puzzle</div>
+                    <p class="text-xs text-gray-500">In a high-speed camera shot, a car wheel appears to spin backwards. Given the frame rate and wheel speed, explain why this happens (Stroboscopic effect).</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#73</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Calendar Cube Puzzle</div>
+                    <p class="text-xs text-gray-500">You have two cubes. You want to display every day of the month (01 to 31) using the faces of these two cubes. What numbers should be painted on the faces of each cube?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#74</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Counters and Board</div>
+                    <p class="text-xs text-gray-500">You place counters on an 8x8 board. If you place 4 counters such that no two are in the same row or column, how many ways can this be done?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#75</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Circle of Lights</div>
+                    <p class="text-xs text-gray-500">There are lights arranged in a circle. Toggling one toggles its neighbors. How do you turn them all on starting from all off?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: The "Who Did It?" & Situational -->
+        <section>
+            <h2 class="text-3xl font-bold mb-6 category-header">5. Situational & Detective</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#76</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Six Houses Logic Grid</div>
+                    <p class="text-xs text-gray-500">There are 6 houses in a row, each painted a different color, owned by people of different nationalities, with different pets, drinks, and cigarettes. Who owns the fish?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#77</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Married or Unmarried Person Looking</div>
+                    <p class="text-xs text-gray-500">Jack is looking at Anne, but Anne is looking at George. Jack is married, but George is not. Is a married person looking at an unmarried person? (Yes/No/Cannot be determined)</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#78</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Detective and the Suicide</div>
+                    <p class="text-xs text-gray-500">A man is found dead with a tape recorder. The detective plays the tape: "I can't go on..." followed by a gunshot. The detective immediately knows it's murder. Why?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#79</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Sherlock Holmes and the Camping Trip</div>
+                    <p class="text-xs text-gray-500">Holmes and Watson are camping. In the middle of the night, Holmes asks Watson what he sees. Watson describes the stars. Holmes says: "Watson, you idiot! Someone has stolen our tent!" Logic vs Observation.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#80</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Truth and Lie (Twin Brothers)</div>
+                    <p class="text-xs text-gray-500">You meet twin brothers. One always lies, one always tells the truth. You don't know which is which. You ask one question to find out who is who. What do you ask?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#81</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Bank Cashier Puzzle</div>
+                    <p class="text-xs text-gray-500">Three people A, B, C enter a bank. Based on a set of logical conditions (e.g., if A enters, B does not), determine who is the cashier.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#82</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">King and Wine Bottles</div>
+                    <p class="text-xs text-gray-500">A king has 1000 bottles of wine. One is poisoned. He has 10 prisoners to taste. Prisoners die after 24h. How can he identify the bottle in 24h?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#83</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Evil Wizard</div>
+                    <p class="text-xs text-gray-500">An evil wizard imprisons 3 gnomes. He puts a hat on each (Red/Blue). He lines them up. Each can see ahead. They must guess their color to live. What is the strategy?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#84</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Einstein's Riddle (The Zebra Puzzle)</div>
+                    <p class="text-xs text-gray-500">The famous 5 houses, 5 pets, 5 drinks, 5 nationalities riddle. "The Brit lives in the red house..." Who owns the Zebra?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#85</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Missing Dollar</div>
+                    <p class="text-xs text-gray-500">Three guests pay $10 each ($30 total). The manager realizes it's $25, gives $5 to bellboy. Bellboy keeps $2, returns $1 to each guest. Guests paid $9 each ($27) + $2 tip = $29. Where is the missing dollar?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#86</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Finding the Injection for Anesthesia</div>
+                    <p class="text-xs text-gray-500">There are 10 vials of anesthesia. One has a different chemical composition that is heavier. You have a precise scale. How do you find it in minimum weighings?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#87</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Hospital Virus (Grid Contamination)</div>
+                    <p class="text-xs text-gray-500">In a grid of patients, a virus spreads to adjacent neighbors every hour. Given the initial state, how long until everyone is infected?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#88</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Fox, Duck, and Circular Pond</div>
+                    <p class="text-xs text-gray-500">A duck is in the center of a circular pond. A fox is on the shore. The fox runs 4x faster than the duck swims. Can the duck reach the shore and fly away before the fox catches it?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#89</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Couples Crossing the River</div>
+                    <p class="text-xs text-gray-500">Three jealous husbands and their wives need to cross a river. The boat holds 2. A woman cannot be with another man unless her husband is present. How do they cross?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#90</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Toggling Prison Cell</div>
+                    <p class="text-xs text-gray-500">There are N prison cells. You toggle every 1st, then every 2nd, then every 3rd... up to Nth. How many cells are open at the end?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Quick Fire & Miscellaneous -->
+        <section>
+            <h2 class="text-3xl font-bold mb-6 category-header">6. Quick Fire & Miscellaneous</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#91</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Maximum Chocolates</div>
+                    <p class="text-xs text-gray-500">You have $15. A chocolate costs $1. You can exchange 3 wrappers for 1 chocolate. What is the maximum number of chocolates you can eat?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#92</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Tower of Hanoi</div>
+                    <p class="text-xs text-gray-500">Move N disks from rod A to rod C using rod B, obeying the rule that no larger disk can be placed on top of a smaller disk.</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#93</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Bouncing Ball Distance</div>
+                    <p class="text-xs text-gray-500">A ball is dropped from height H. It bounces back to 0.5 * H each time. What is the total distance traveled before it comes to rest?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#94</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Helium Balloon in a Car</div>
+                    <p class="text-xs text-gray-500">You are in a car with a helium balloon. When the car accelerates forward, does the balloon move forward, backward, or stay still?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#95</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Two Trains and a Flying Bird</div>
+                    <p class="text-xs text-gray-500">Trains A and B are moving towards each other at 60 mph. A bird flies between them at 100 mph. What is the total distance the bird flies before collision?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#96</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Pair of Socks</div>
+                    <p class="text-xs text-gray-500">In a dark room, you have 10 black socks and 10 white socks in a drawer. How many socks must you pull out to ensure you have at least one matching pair?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#97</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">How Long Did Jack Walk?</div>
+                    <p class="text-xs text-gray-500">Jack walks to a store at 4mph and rides back at 20mph. The whole trip took 3 hours. How far away is the store?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#98</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Fox, Chicken, and Grains</div>
+                    <p class="text-xs text-gray-500">A classic river crossing puzzle. A farmer has a fox, a chicken, and a bag of grains. He can take only one. Fox eats chicken, chicken eats grains if left alone. How to cross?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#99</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">The Poisoned King (Binary Search)</div>
+                    <p class="text-xs text-gray-500">1000 bottles of wine. 1 is poisoned. 10 testers. 24 hours. How to identify the bottle? (Same as Puzzle #14/82, emphasizes binary representation solution).</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#100</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Cut the Stick</div>
+                    <p class="text-xs text-gray-500">You have a stick of length N. You want to cut it into pieces of length 1. You can cut multiple pieces stacked together. What is the minimum number of cuts?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#101</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Muddy Head Puzzle</div>
+                    <p class="text-xs text-gray-500">Three children played in the mud. Father asks: "Do you know if your forehead is muddy?" They look at each other. After repeated questions, they figure it out. How?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#102</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Sand Timer Puzzle</div>
+                    <p class="text-xs text-gray-500">You have a 7-minute hourglass and an 11-minute hourglass. How can you measure exactly 15 minutes for boiling an egg?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#103</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Days of Month Using a Dice</div>
+                    <p class="text-xs text-gray-500">How can you represent 31 days of a month using two 6-sided dice? (Standard Dice faces 1-6).</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#104</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Siblings in a Family</div>
+                    <p class="text-xs text-gray-500">A boy says "I have equal number of brothers and sisters". His sister says "I have twice as many brothers as sisters". How many brothers and sisters are there?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#105</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Birbal the Fruit Trader</div>
+                    <p class="text-xs text-gray-500">A trader gives half his fruits plus half a fruit to the first customer, half remaining plus half a fruit to the second... after 7 customers he has 0. How many did he start with?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#106</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Flip the Card</div>
+                    <p class="text-xs text-gray-500">A card has a number on one side and a color on the other. Rule: "If a card shows an even number, its opposite face is red". You see: 3, 8, Red, Blue. Which cards must you flip to test the rule?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#107</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Analog Clock Overlap</div>
+                    <p class="text-xs text-gray-500">How many times do the minute and hour hands of a clock overlap in exactly 24 hours?</p>
+                </div>
+                <div class="bg-white p-4 rounded border hover:bg-gray-50 puzzle-card cursor-pointer relative">
+                    <div class="flex justify-between items-start"><span class="font-bold text-green-700 mr-2">#108</span><div class="check-circle w-5 h-5"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div></div>
+                    <div class="font-semibold mb-1">Train Station Meeting</div>
+                    <p class="text-xs text-gray-500">A man arrives at the station 1 hour early. He starts walking home. His wife, driving to pick him up, meets him on the way and they get home 20 minutes earlier than usual. How long did he walk?</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm pb-8">
+            <p>&copy; 2024 Puzzle Collection. Generated for educational purposes.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.puzzle-card');
+            const completedCountEl = document.getElementById('completed-count');
+            
+            // Load state from localStorage
+            let solvedPuzzles = JSON.parse(localStorage.getItem('solvedPuzzles') || '[]');
+            
+            function updateCount() {
+                completedCountEl.textContent = solvedPuzzles.length;
+            }
+
+            // Initialize UI based on saved state
+            cards.forEach((card, index) => {
+                const puzzleId = index; // Simple ID based on order
+                
+                // Set initial state
+                if (solvedPuzzles.includes(puzzleId)) {
+                    card.classList.add('solved');
+                }
+
+                card.addEventListener('click', function() {
+                    this.classList.toggle('solved');
+                    
+                    if (this.classList.contains('solved')) {
+                        if (!solvedPuzzles.includes(puzzleId)) {
+                            solvedPuzzles.push(puzzleId);
+                        }
+                    } else {
+                        solvedPuzzles = solvedPuzzles.filter(id => id !== puzzleId);
+                    }
+                    
+                    localStorage.setItem('solvedPuzzles', JSON.stringify(solvedPuzzles));
+                    updateCount();
+                });
+            });
+
+            updateCount();
+        });
+    </script>
+</body>
+</html>
